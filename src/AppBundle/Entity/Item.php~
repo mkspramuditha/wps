@@ -38,6 +38,20 @@ class Item
     /**
      * @var int
      *
+     * @ORM\Column(name="synced", type="boolean", nullable=true)
+     */
+    private $synced;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="stock_updated_date", type="datetime", nullable=true)
+     */
+    private $stockUpdatedDate;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="length", type="float", nullable=true)
      */
     private $length;
@@ -756,5 +770,53 @@ class Item
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Item
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set synced
+     *
+     * @param boolean $synced
+     *
+     * @return Item
+     */
+    public function setSynced($synced)
+    {
+        $this->synced = $synced;
+
+        return $this;
+    }
+
+    /**
+     * Get synced
+     *
+     * @return boolean
+     */
+    public function getSynced()
+    {
+        return $this->synced;
     }
 }

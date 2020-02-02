@@ -11,7 +11,7 @@ class SyncController extends DefaultController
      * @Route("/productSync", name="productSync")
      */
     public function productSync(){
-        $items = $this->getRepository('Item')->findBy(array('shopifyProductId'=>null));
+        $items = $this->getRepository('Item')->findBy(array('shopifyProductId'=>null),array(),1000);
 
         foreach ($items as $item){
 
@@ -153,7 +153,6 @@ class SyncController extends DefaultController
 
 
         return $response;
-
     }
 
 }

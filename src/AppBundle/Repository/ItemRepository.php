@@ -10,4 +10,32 @@ namespace AppBundle\Repository;
  */
 class ItemRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getProductsToUpdateStock($limit){
+
+        $now = new \DateTime('now');
+        $now->modify("-1 day");
+
+        $qb = $this->createQueryBuilder('p');
+        $q  = $qb->select(array('p'))
+            ->where('p.stockUpdatedDate < :last')
+            ->setParameter('last', $now, \Doctrine\DBAL\Types\Type::DATETIME)
+            ->andWhere('p.synced = :synced')
+            ->setParameter('synced',1)
+            ->setMaxResults($limit)
+            ->orderBy('p.stockUpdatedDate','ASC')
+            ->getQuery();
+
+
+//        $q  = $qb->select(array('p'))
+//            ->where('p.itemId = :last')
+//            ->setParameter('last', 536911)
+////            ->andWhere('p.synced = :synced')
+////            ->setParameter('synced',1)
+////            ->setMaxResults($limit)
+////            ->orderBy('p.stockUpdatedDate','ASC')
+//            ->getQuery();
+
+
+        return $q->getResult();
+    }
 }

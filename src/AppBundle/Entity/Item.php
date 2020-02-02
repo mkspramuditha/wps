@@ -38,6 +38,20 @@ class Item
     /**
      * @var int
      *
+     * @ORM\Column(name="synced", type="boolean", nullable=true)
+     */
+    private $synced;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="stock_updated_date", type="datetime", nullable=true)
+     */
+    private $stockUpdatedDate;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="length", type="float", nullable=true)
      */
     private $length;
@@ -780,5 +794,53 @@ class Item
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set synced
+     *
+     * @param boolean $synced
+     *
+     * @return Item
+     */
+    public function setSynced($synced)
+    {
+        $this->synced = $synced;
+
+        return $this;
+    }
+
+    /**
+     * Get synced
+     *
+     * @return boolean
+     */
+    public function getSynced()
+    {
+        return $this->synced;
+    }
+
+    /**
+     * Set stockUpdatedDate
+     *
+     * @param \DateTime $stockUpdatedDate
+     *
+     * @return Item
+     */
+    public function setStockUpdatedDate($stockUpdatedDate)
+    {
+        $this->stockUpdatedDate = $stockUpdatedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get stockUpdatedDate
+     *
+     * @return \DateTime
+     */
+    public function getStockUpdatedDate()
+    {
+        return $this->stockUpdatedDate;
     }
 }
